@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Content Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f4f4f9;
+    }
+    h1 {
+      color: #333;
+    }
+    .box {
+      padding: 20px;
+      margin: 10px 0;
+      border: 2px solid #007bff;
+      border-radius: 8px;
+      background: #fff;
+      transition: background 0.3s;
+    }
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    input {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dynamic Content with JavaScript</h1>
+
+  <!-- Click Event -->
+  <div class="box" id="clickBox">
+    <p>Click the button to change this text.</p>
+    <button onclick="changeText()">Click Me</button>
+  </div>
+
+  <!-- Hover Event -->
+  <div class="box" id="hoverBox" onmouseover="highlightBox()" onmouseout="resetBox()">
+    <p>Hover over this box to change its background color.</p>
+  </div>
+
+  <!-- Input Event -->
+  <div class="box">
+    <p>Type your name below:</p>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <p id="greeting"></p>
+  </div>
+
+  <script>
+    // Click event: change text
+    function changeText() {
+      document.getElementById("clickBox").querySelector("p").innerText = "You clicked the button!";
+    }
+
+    // Hover event: change background
+    function highlightBox() {
+      document.getElementById("hoverBox").style.background = "#d1ecf1";
+    }
+    function resetBox() {
+      document.getElementById("hoverBox").style.background = "#fff";
+    }
+
+    // Input event: live greeting
+    document.getElementById("nameInput").addEventListener("input", function() {
+      const name = this.value;
+      document.getElementById("greeting").innerText = name ? `Hello, ${name}!` : "";
+    });
+  </script>
+</body>
+</html>
