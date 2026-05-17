@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Result Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f4f4f9;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e9ecef;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Student Result Calculator</h1>
+    <label for="subjects">Enter number of subjects:</label>
+    <input type="number" id="subjects" min="1" placeholder="e.g. 5">
+    <button onclick="generateInputs()">Submit</button>
+
+    <div id="marksInput"></div>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    function generateInputs() {
+      const numSubjects = document.getElementById("subjects").value;
+      const marksDiv = document.getElementById("marksInput");
+      marksDiv.innerHTML = "";
+
+      if (numSubjects > 0) {
+        for (let i = 1; i <= numSubjects; i++) {
+          marksDiv.innerHTML += `
+            <label>Enter marks for Subject ${i}:</label>
+            <input type="number" id="mark${i}" min="0" max="100" placeholder="0-100"><br>
+          `;
+        }
+        marksDiv.innerHTML += `<button onclick="calculateResult(${numSubjects})">Calculate Result</button>`;
+      }
+    }
+
+    function calculateResult(numSubjects) {
+      let total = 0;
+      let pass = true;
+
+      for (let i = 1; i <= numSubjects; i++) {
+        let mark = parseInt(document.getElementById(`mark${i}`).value);
+        if (isNaN(mark)) mark = 0;
+        total += mark;
+
+        if (mark < 40) { // condition for fail
+          pass = false;
+        }
+      }
+
+      let average = total / numSubjects;
+      let grade = "";
+
+      if (average >= 80) {
+        grade = "A";
+      } else if (average >= 60) {
+        grade = "B";
+      } else if (average >= 40) {
+        grade = "C";
+      } else {
+        grade = "D";
+      }
+
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = `
+        <h3>Result:</h3>
+        <p>Total Marks: ${total}</p>
+        <p>Average Marks: ${average.toFixed(2)}</p>
+        <p>Grade: ${grade}</p>
+        <p>Status: ${pass ? "<span style='color:green'>Pass</span>" : "<span style='color:red'>Fail</span>"}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
