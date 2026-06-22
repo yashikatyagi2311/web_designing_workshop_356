@@ -1,0 +1,24 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "second semester repoo",
+  "main": "javascript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yashikatyagi2311/web_designing_workshop_356.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/yashikatyagi2311/web_designing_workshop_356/issues"
+  },
+  "homepage": "https://github.com/yashikatyagi2311/web_designing_workshop_356#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
